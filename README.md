@@ -1,2 +1,2 @@
 # satwik-SE.github.io
-This is a sample article
+This is readme
