@@ -14,6 +14,38 @@ Session Authentication
 
 Validates proper session based and token based authentication mechanisms are used and sessions are re-authenticated periodically
 
+{% hint style="warning" %}
+**This is a serious warning**
+{% endhint %}
+
+{% tabs %}
+{% tab title="Java" %}
+```java
+// Some code
+class HelloWorld
+{
+    // Your program begins with a call to main().
+    // Prints "Hello, World" to the terminal window.
+    public static void main(String args[])
+    {
+        System.out.println("Hello, World");
+    }
+}
+```
+{% endtab %}
+
+{% tab title="Python" %}
+```python
+// Some code
+import *
+a = 'Hello World!'
+print(a)
+```
+{% endtab %}
+{% endtabs %}
+
+This is the following text
+
 ## **Oak9.Req.AE.10**
 
 **Subcategory:**
