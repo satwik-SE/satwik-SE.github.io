@@ -1,14 +1,16 @@
-‌# Summary​
+# Table of contents
+
+* [README](README.md)
 
 ## Oak9 Control Framework
-* [Control Requirements](./reqs/README.md)    
-    * [Detailed Requirements](./reqs/cf.html)    
-    * [High Level Requirements](part1/page1-2.md)
 
-* [Blueprints](page2/README.md)    
-    * [Some child page](page2/page2-1.md)    
-    * [Some other child page](part2/page2-2.md)    
+* [Control Requirements](reqs/README.md)
+  * [Detailed Requirements](oak9-control-framework/reqs/detailed-requirements.md)
+  * [High Level Requirements](oak9-control-framework/reqs/high-level-requirements.md)
+* [Blueprints](oak9-control-framework/blueprints/README.md)
+  * [Some child page](oak9-control-framework/blueprints/some-child-page.md)
+  * [Some other child page](oak9-control-framework/blueprints/some-other-child-page.md)
 
 ## A second-page group​
 
-* [Yet another page](another-page.md)
+* [Yet another page](a-second-page-group/yet-another-page.md)
