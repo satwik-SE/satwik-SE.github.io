@@ -46,7 +46,7 @@ print(a)
 
 This is the following text
 
-<h2 style="color:purple;">Oak9.Req.AE.10</h2>
+## **Oak9.Req.AE.10**
 
 **Subcategory:**
 
