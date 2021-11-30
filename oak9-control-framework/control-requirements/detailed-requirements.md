@@ -1,10 +1,8 @@
-# Detailed Requirements
-
-## Access Enforcement
+# Access Enforcement
 
 ***
 
-<mark style="color:Red;">## **Oak9.Req.AE.1**</mark>
+## <mark style="color:Red;">**Oak9.Req.AE.1**</mark>
 
 **Subcategory:**
 
