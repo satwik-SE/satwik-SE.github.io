@@ -4,7 +4,7 @@
 
 ***
 
-<mark style="color:#053452;">**Oak9.Req.AE.1**</mark>
+****[**Oak9.Req.AE.1**](detailed-requirements.md#access-enforcement)****
 
 **Subcategory:**
 
@@ -18,7 +18,7 @@ Session Authentication
 
 Validates proper session based and token based authentication mechanisms are used and sessions are re-authenticated periodically
 
-**Oak9.Req.AE.10**
+****[**Oak9.Req.AE.10**](detailed-requirements.md#access-enforcement)****
 
 **Subcategory:**
 
@@ -32,7 +32,7 @@ Secure Browser Cookies
 
 Use of browser cookies should follow standards and industry best practices
 
-**Oak9.Req.AE.11**
+****[**Oak9.Req.AE.11**](detailed-requirements.md#access-enforcement)****
 
 **Subcategory:**
 
@@ -46,7 +46,7 @@ Access Policy Enforcement
 
 Configure the policy enforcement point to enforce the access control policy and ensure minimum necessary access
 
-**Oak9.Req.AE.12**
+****[**Oak9.Req.AE.12**](detailed-requirements.md#access-enforcement)****
 
 **Subcategory:**
 
