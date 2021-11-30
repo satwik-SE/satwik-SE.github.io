@@ -1,6 +1,6 @@
 # Table of contents
 
-* [README](README.md)
+* [Welcome to Oak9](README.md)
 
 ## Oak9 Control Framework
 
