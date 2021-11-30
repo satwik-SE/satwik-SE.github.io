@@ -4,9 +4,9 @@
 
 ## Oak9 Control Framework
 
-* [Control Requirements](reqs/README.md)
-  * [Detailed Requirements](oak9-control-framework/reqs/detailed-requirements.md)
-  * [High Level Requirements](oak9-control-framework/reqs/high-level-requirements.md)
+* [Control Requirements](oak9-control-framework/control-requirements/README.md)
+  * [Detailed Requirements](oak9-control-framework/control-requirements/detailed-requirements.md)
+  * [High Level Requirements](oak9-control-framework/control-requirements/high-level-requirements.md)
 * [Blueprints](oak9-control-framework/blueprints/README.md)
   * [Some child page](oak9-control-framework/blueprints/some-child-page.md)
   * [Some other child page](oak9-control-framework/blueprints/some-other-child-page.md)

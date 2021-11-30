@@ -1,10 +1,10 @@
-# oak9 Requirement Documentation
+# Detailed Requirements
 
 ## Access Enforcement
 
-* * *
+***
 
-**Oak9.Req.AE.1**
+<mark style="color:blue;">**Oak9.Req.AE.1**</mark>
 
 **Subcategory:**
 
@@ -298,4 +298,4 @@ Limit the Assurance Placed in Sessions
 
 Sessions should not provide any more assurance that what is commensurate with the authentication event that triggers the session
 
-* * *
+***
