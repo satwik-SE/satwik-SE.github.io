@@ -1,4 +1,5 @@
-resource "aws_elb" "foo" { # Listeners.Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_elb.tf on line: 1 # Listeners.Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_elb.tf on line: 1
+resource "aws_elb" "foo" { # Listeners.Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_elb.tf on line: 1 # Listeners.Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_elb.tf on line: 1 # Listeners.Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_elb.tf on line: 1
+  Type = "AWS::ElasticLoadBalancing::LoadBalancer"
   Type = "AWS::ElasticLoadBalancing::LoadBalancer"
   Type = "AWS::ElasticLoadBalancing::LoadBalancer"
   # All options # Must be configured
@@ -24,7 +25,7 @@ resource "aws_elb" "foo" { # Listeners.Protocol is not configured in file satwik
     interval      = 60
   }
 
-  listener {
+  listener { # listener.instance_protocol should be set to any of SSL,HTTPS
     # All options # Must be configured # listener.instance_protocol should be set to any of SSL,HTTPS
     instance_protocol = "http" # listener.instance_protocol should be set to any of SSL,HTTPS
     instance_port     = 80
@@ -47,12 +48,18 @@ resource "aws_elb" "foo" { # Listeners.Protocol is not configured in file satwik
   tags = {
     Name = "foobar-terraform-elb"
   }
-}
+} # Listeners.Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_elb.tf on line: 50 # aws_elb.listener.instance_protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_elb.tf on line: 50
+  Type = "AWS::ElasticLoadBalancing::LoadBalancer"
  # Listeners.Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_elb.tf on line: 50 # aws_elb.listener.instance_protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_elb.tf on line: 50
   Type = "AWS::ElasticLoadBalancing::LoadBalancer"
 resource "aws_elb_attachment" "foo" { # Listeners.Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_elb.tf on line: 50 # aws_elb.listener.instance_protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_elb.tf on line: 50
   Type = "AWS::ElasticLoadBalancing::LoadBalancer"
-  elb      = aws_elb.foo.id
+  elb      = aws_elb.foo.id # Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_elb.tf on line: 55 # HealthCheckProtocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_elb.tf on line: 55 # Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_elb.tf on line: 55
+  Type = "AWS::ElasticLoadBalancingV2::ListenerCertificate"
+  Type = "AWS::ElasticLoadBalancingV2::ListenerRule"
+  SslPolicy = "ELBSecurityPolicy-FS-1-2-Res-2019-08"
+  HealthCheckPort = "traffic-port"
+  LoadBalancerAttributes.Key.deletion_protection.enabled = true
   instance = aws_instance.bar.id
 } # Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_elb.tf on line: 55 # HealthCheckProtocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_elb.tf on line: 55 # Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_elb.tf on line: 55
   Type = "AWS::ElasticLoadBalancingV2::ListenerCertificate"
