@@ -35,7 +35,7 @@ resource "aws_lb" "application" {
 resource "aws_lb_listener" "application" {
   load_balancer_arn = aws_lb.application.arn
   port              = "80"
-  protocol          = "HTTP"
+  protocol          = "HTTPS"
 
   default_action {
     # All options # Must be configured
@@ -110,7 +110,7 @@ resource "aws_lb_target_group" "application" {
     healthy_threshold = 3
     interval          = 30
     # Preferred value HTTPS for application & TLS for network
-    protocol            = "HTTP"
+    protocol            = "HTTPS"
     timeout             = 5
     unhealthy_threshold = 3
     path                = "/health"
@@ -133,7 +133,7 @@ resource "aws_lb_target_group" "application" {
 resource "aws_lb_target_group" "backup" {
   name                 = "bar-application"
   port                 = 80
-  protocol             = "HTTP"
+  protocol             = "HTTPS"
   target_type          = "ip"
   deregistration_delay = 10
   vpc_id               = aws_vpc.foo_lb.id
