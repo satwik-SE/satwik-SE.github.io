@@ -32,7 +32,7 @@ resource "aws_lb" "application" {
   }
 }
 
-resource "aws_lb_listener" "application" {
+resource "aws_lb_listener" "application_listener" {
   load_balancer_arn = aws_lb.application.arn
   port              = "80"
   protocol          = "HTTPS"
@@ -89,7 +89,7 @@ resource "aws_lb_listener_certificate" "foo" {
   certificate_arn = var.certificate_arn
 }
 
-resource "aws_lb_target_group" "application" {
+resource "aws_lb_target_group" "application_tg" {
   name = "foo-application"
   port = 443
   # Preferred value HTTPS for application & TLS for network
@@ -156,7 +156,7 @@ resource "aws_lb_listener_rule" "forward" {
     type = "forward"
     forward {
       target_group {
-        arn    = aws_lb_target_group.application.arn
+        arn    = aws_lb_target_group.application_tg.arn
         weight = 80
       }
 
