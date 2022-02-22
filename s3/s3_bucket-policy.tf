@@ -1,4 +1,4 @@
-resource "aws_s3_bucket_policy" "foo" { # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3_bucket-policy.tf on line: 1
+resource "aws_s3_bucket_policy" "foo" { # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3_bucket-policy.tf on line: 1 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3_bucket-policy.tf on line: 1
   # All options # Must be configured
   bucket = aws_s3_bucket.foo.id
 

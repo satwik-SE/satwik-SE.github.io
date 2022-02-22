@@ -1,4 +1,7 @@
-resource "aws_lb" "network" { # Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_network.tf on line: 1 # HealthCheckProtocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_network.tf on line: 1 # Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_network.tf on line: 1
+resource "aws_lb" "network" { # Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_network.tf on line: 1 # HealthCheckProtocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_network.tf on line: 1 # Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_network.tf on line: 1 # Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_network.tf on line: 1 # HealthCheckProtocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_network.tf on line: 1 # Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_network.tf on line: 1
+  SslPolicy = "ELBSecurityPolicy-FS-1-2-Res-2019-08"
+  HealthCheckPort = "traffic-port"
+  LoadBalancerAttributes.Key.deletion_protection.enabled = true
   SslPolicy = "ELBSecurityPolicy-FS-1-2-Res-2019-08"
   HealthCheckPort = "traffic-port"
   LoadBalancerAttributes.Key.deletion_protection.enabled = true
@@ -24,11 +27,16 @@ resource "aws_lb" "network" { # Protocol is not configured in file satwik-SE-sat
 
   tags = {
     Environment = "production"
-  }
+  } # HealthCheckProtocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_network.tf on line: 27
+  Type = "AWS::ElasticLoadBalancingV2::ListenerCertificate"
+  Type = "AWS::ElasticLoadBalancingV2::ListenerRule"
+  SslPolicy = "ELBSecurityPolicy-FS-1-2-Res-2019-08"
+  HealthCheckPort = "traffic-port"
+  LoadBalancerAttributes.Key.deletion_protection.enabled = true
 }
 
 resource "aws_lb_listener" "front_end" { # HealthCheckProtocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_network.tf on line: 27
-  Type = "AWS::ElasticLoadBalancingV2::ListenerCertificate"
+  Type = "AWS::ElasticLoadBalancingV2::ListenerCertificate" # protocol should be set to any of HTTPS,TLS # protocol should be set to any of HTTPS,TLS
   Type = "AWS::ElasticLoadBalancingV2::ListenerRule"
   SslPolicy = "ELBSecurityPolicy-FS-1-2-Res-2019-08"
   HealthCheckPort = "traffic-port"
@@ -36,16 +44,23 @@ resource "aws_lb_listener" "front_end" { # HealthCheckProtocol is not configured
   # All options # Must be configured
   load_balancer_arn = aws_lb.network.arn
   port              = "80"
-  protocol          = "TCP" # protocol should be set to any of HTTPS,TLS # protocol should be set to any of HTTPS,TLS
+  protocol          = "TCP" # protocol should be set to any of HTTPS,TLS # protocol should be set to any of HTTPS,TLS # HealthCheckProtocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_network.tf on line: 39
+  SslPolicy = "ELBSecurityPolicy-FS-1-2-Res-2019-08"
+  HealthCheckPort = "traffic-port"
+  LoadBalancerAttributes.Key.deletion_protection.enabled = true
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.network.arn
+    target_group_arn = aws_lb_target_group.network.arn # protocol should be set to any of HTTPS,TLS # protocol should be set to any of HTTPS,TLS
   }
 }
 
 resource "aws_lb_target_group" "network" { # HealthCheckProtocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_network.tf on line: 39
-  SslPolicy = "ELBSecurityPolicy-FS-1-2-Res-2019-08"
+  SslPolicy = "ELBSecurityPolicy-FS-1-2-Res-2019-08" # HealthCheckProtocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_network.tf on line: 48
+  Type = "AWS::ElasticLoadBalancingV2::ListenerCertificate"
+  Type = "AWS::ElasticLoadBalancingV2::ListenerRule"
+  HealthCheckPort = "traffic-port"
+  LoadBalancerAttributes.Key.deletion_protection.enabled = true
   HealthCheckPort = "traffic-port"
   LoadBalancerAttributes.Key.deletion_protection.enabled = true
   # All options # Must be configured
