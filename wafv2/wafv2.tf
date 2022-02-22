@@ -15,7 +15,7 @@ resource "aws_wafv2_ip_set" "ip_set_demo" {
 }
 
 
-resource "aws_wafv2_regex_pattern_set" "wafv2_regex_pattern_demo" {
+resource "aws_wafv2_regex_pattern_set" "wafv2_regex_pattern_demo" { # IPAddressVersion is not configured in file satwik-SE-satwik-SE.github.io/wafv2/wafv2.tf on line: 18
   name        = "wafv2_regex_pattern_demo"
   description = "Example regex pattern set"
   scope       = "REGIONAL"
@@ -35,7 +35,7 @@ resource "aws_wafv2_regex_pattern_set" "wafv2_regex_pattern_demo" {
 }
 
 
-resource "aws_wafv2_rule_group" "wafv2_rule_demo" {
+resource "aws_wafv2_rule_group" "wafv2_rule_demo" { # Rules.Statement.SizeConstraintStatement.ComparisonOperator is not configured in file satwik-SE-satwik-SE.github.io/wafv2/wafv2.tf on line: 38 # IPAddressVersion is not configured in file satwik-SE-satwik-SE.github.io/wafv2/wafv2.tf on line: 38
   name     = "wafv2_rule_demo"
   scope    = "REGIONAL"
   capacity = 2
@@ -69,7 +69,7 @@ resource "aws_wafv2_rule_group" "wafv2_rule_demo" {
   }
 }
 
-resource "aws_wafv2_web_acl" "wafv2_web_acl_demo" {
+resource "aws_wafv2_web_acl" "wafv2_web_acl_demo" { # IPAddressVersion is not configured in file satwik-SE-satwik-SE.github.io/wafv2/wafv2.tf on line: 72
   name        = "managed-rule-example"
   description = "Example of a managed rule."
   scope       = "REGIONAL"
@@ -128,6 +128,8 @@ resource "aws_wafv2_web_acl" "wafv2_web_acl_demo" {
 
 # this resource use for aws_wafv2_web_acl_association
 resource "aws_api_gateway_rest_api" "example" {
+  SecurityPolicy = "TLS_1_2"
+  KeyType = "API_KEY"
   body = jsonencode({
     openapi = "3.0.1"
     info = {
@@ -153,6 +155,8 @@ resource "aws_api_gateway_rest_api" "example" {
 
 # this resource use for API Gateway stage
 resource "aws_api_gateway_deployment" "example" {
+  SecurityPolicy = "TLS_1_2"
+  KeyType = "API_KEY"
   rest_api_id = aws_api_gateway_rest_api.example.id
 
   triggers = {
@@ -166,13 +170,15 @@ resource "aws_api_gateway_deployment" "example" {
 
 # For web_acl_association
 resource "aws_api_gateway_stage" "example" {
+  SecurityPolicy = "TLS_1_2"
+  KeyType = "API_KEY"
   deployment_id = aws_api_gateway_deployment.example.id
   rest_api_id   = aws_api_gateway_rest_api.example.id
   stage_name    = "example"
 }
 
 # For web_acl_association
-resource "aws_wafv2_web_acl" "example" {
+resource "aws_wafv2_web_acl" "example" { # IPAddressVersion is not configured in file satwik-SE-satwik-SE.github.io/wafv2/wafv2.tf on line: 175
   name  = "web-acl-association-example"
   scope = "REGIONAL"
 
@@ -187,7 +193,7 @@ resource "aws_wafv2_web_acl" "example" {
   }
 }
 
-resource "aws_wafv2_web_acl_association" "example" {
+resource "aws_wafv2_web_acl_association" "example" { # IPAddressVersion is not configured in file satwik-SE-satwik-SE.github.io/wafv2/wafv2.tf on line: 190
   resource_arn = aws_api_gateway_stage.example.arn
   web_acl_arn  = aws_wafv2_web_acl.example.arn
 }
