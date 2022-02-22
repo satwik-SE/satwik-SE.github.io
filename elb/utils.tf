@@ -1,5 +1,5 @@
 data "aws_caller_identity" "current" {}
-resource "aws_s3_bucket" "foo_lb_logs" { # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/elb/utils.tf on line: 2 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/elb/utils.tf on line: 2 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/elb/utils.tf on line: 2 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/elb/utils.tf on line: 2
+resource "aws_s3_bucket" "foo_lb_logs" { # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/elb/utils.tf on line: 2 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/elb/utils.tf on line: 2 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/elb/utils.tf on line: 2 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/elb/utils.tf on line: 2 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/elb/utils.tf on line: 2
   bucket_prefix = "foo-lb-logs"
   acl           = "private"
   force_destroy = true
@@ -8,7 +8,7 @@ resource "aws_s3_bucket" "foo_lb_logs" { # CorsConfiguration.CorsRules.AllowedMe
   }
 }
 
-resource "aws_s3_bucket_policy" "foo_lb_logs" { # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/elb/utils.tf on line: 11 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/elb/utils.tf on line: 11 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/elb/utils.tf on line: 11 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/elb/utils.tf on line: 11
+resource "aws_s3_bucket_policy" "foo_lb_logs" { # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/elb/utils.tf on line: 11 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/elb/utils.tf on line: 11 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/elb/utils.tf on line: 11 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/elb/utils.tf on line: 11 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/elb/utils.tf on line: 11
   bucket = aws_s3_bucket.foo_lb_logs.id
   policy = data.aws_iam_policy_document.foo_lb_logs.json
 }
@@ -129,6 +129,9 @@ resource "aws_network_interface" "bar" {
 }
 
 resource "aws_instance" "bar" {
+  BlockDeviceMappings.Ebs.Encrypted = true
+  NetworkInterfaces.AssociatePublicIpAddress = false
+  SourceDestCheck = false
   BlockDeviceMappings.Ebs.Encrypted = true
   NetworkInterfaces.AssociatePublicIpAddress = false
   SourceDestCheck = false
