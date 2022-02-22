@@ -1,4 +1,7 @@
-resource "aws_lb" "application" {
+resource "aws_lb" "application" { # Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_application.tf on line: 1 # HealthCheckProtocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_application.tf on line: 1 # Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_application.tf on line: 1
+  SslPolicy = "ELBSecurityPolicy-FS-1-2-Res-2019-08"
+  HealthCheckPort = "traffic-port"
+  LoadBalancerAttributes.Key.deletion_protection.enabled = true
   # All options # Must be configured
   name_prefix        = "foo"
   internal           = false
@@ -10,7 +13,7 @@ resource "aws_lb" "application" {
   enable_deletion_protection       = false
   enable_cross_zone_load_balancing = true
   enable_http2                     = true
-  ip_address_type                  = "ipv4"
+  ip_address_type                  = "AWS::ElasticLoadBalancingV2::ListenerCertificate"
   drop_invalid_header_fields       = true
 
   access_logs {
@@ -32,7 +35,10 @@ resource "aws_lb" "application" {
   }
 }
 
-resource "aws_lb_listener" "application" {
+resource "aws_lb_listener" "application" { # HealthCheckProtocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_application.tf on line: 35
+  SslPolicy = "ELBSecurityPolicy-FS-1-2-Res-2019-08"
+  HealthCheckPort = "traffic-port"
+  LoadBalancerAttributes.Key.deletion_protection.enabled = true
   load_balancer_arn = aws_lb.application.arn
   port              = "80"
   protocol          = "HTTPS"
@@ -42,14 +48,19 @@ resource "aws_lb_listener" "application" {
     type = "fixed-response"
 
     fixed_response {
-      content_type = "text/plain"
+      content_type = "AWS::ElasticLoadBalancingV2::ListenerCertificate"
       message_body = "Fixed response content"
       status_code  = "200"
     }
   }
 }
 
-resource "aws_lb_listener" "authenticate" {
+resource "aws_lb_listener" "authenticate" { # HealthCheckProtocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_application.tf on line: 52
+  Type = "AWS::ElasticLoadBalancingV2::ListenerCertificate"
+  Type = "AWS::ElasticLoadBalancingV2::ListenerRule"
+  SslPolicy = "ELBSecurityPolicy-FS-1-2-Res-2019-08"
+  HealthCheckPort = "traffic-port"
+  LoadBalancerAttributes.Key.deletion_protection.enabled = true
   # All options # Must be configured
   load_balancer_arn = aws_lb.application.arn
   port              = "8082"
@@ -83,20 +94,28 @@ resource "aws_lb_listener" "authenticate" {
   }
 }
 
-resource "aws_lb_listener_certificate" "foo" {
+resource "aws_lb_listener_certificate" "foo" { # Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_application.tf on line: 86 # HealthCheckProtocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_application.tf on line: 86 # Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_application.tf on line: 86
+  Type = "AWS::ElasticLoadBalancingV2::ListenerCertificate"
+  Type = "AWS::ElasticLoadBalancingV2::ListenerRule"
+  SslPolicy = "ELBSecurityPolicy-FS-1-2-Res-2019-08"
+  HealthCheckPort = "traffic-port"
+  LoadBalancerAttributes.Key.deletion_protection.enabled = true
   # All options # Must be configured
   listener_arn    = aws_lb_listener.authenticate.arn
   certificate_arn = var.certificate_arn
 }
 
-resource "aws_lb_target_group" "application" {
+resource "aws_lb_target_group" "application" { # HealthCheckProtocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_application.tf on line: 92
+  SslPolicy = "ELBSecurityPolicy-FS-1-2-Res-2019-08"
+  HealthCheckPort = "traffic-port"
+  LoadBalancerAttributes.Key.deletion_protection.enabled = true
   name = "foo-application"
   port = 443
   # Preferred value HTTPS for application & TLS for network
   protocol                           = "HTTPS"           # Must be configured
   target_type                        = "instance"        # Must be configured
   vpc_id                             = aws_vpc.foo_lb.id # Must be configured
-  load_balancing_algorithm_type      = "round_robin"     # Must be configured
+  load_balancing_algorithm_type      = "AWS::ElasticLoadBalancingV2::ListenerCertificate"
   slow_start                         = 35
   lambda_multi_value_headers_enabled = false
   # Preferred value true
@@ -130,16 +149,24 @@ resource "aws_lb_target_group" "application" {
   }
 }
 
-resource "aws_lb_target_group" "backup" {
+resource "aws_lb_target_group" "backup" { # HealthCheckProtocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_application.tf on line: 133
+  SslPolicy = "ELBSecurityPolicy-FS-1-2-Res-2019-08"
+  HealthCheckPort = "traffic-port"
+  LoadBalancerAttributes.Key.deletion_protection.enabled = true
   name                 = "bar-application"
   port                 = 80
   protocol             = "HTTPS"
-  target_type          = "ip"
+  target_type          = "AWS::ElasticLoadBalancingV2::ListenerCertificate"
   deregistration_delay = 10
   vpc_id               = aws_vpc.foo_lb.id
 }
 
-resource "aws_lb_target_group_attachment" "foo" {
+resource "aws_lb_target_group_attachment" "foo" { # Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_application.tf on line: 142 # HealthCheckProtocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_application.tf on line: 142 # Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_application.tf on line: 142
+  Type = "AWS::ElasticLoadBalancingV2::ListenerCertificate"
+  Type = "AWS::ElasticLoadBalancingV2::ListenerRule"
+  SslPolicy = "ELBSecurityPolicy-FS-1-2-Res-2019-08"
+  HealthCheckPort = "traffic-port"
+  LoadBalancerAttributes.Key.deletion_protection.enabled = true
   # All options # Must be configured
   target_group_arn  = aws_lb_target_group.backup.arn
   target_id         = "10.20.3.16"
@@ -147,7 +174,12 @@ resource "aws_lb_target_group_attachment" "foo" {
   availability_zone = "us-east-2a"
 }
 
-resource "aws_lb_listener_rule" "forward" {
+resource "aws_lb_listener_rule" "forward" { # Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_application.tf on line: 150 # HealthCheckProtocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_application.tf on line: 150 # Protocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_application.tf on line: 150
+  Type = "AWS::ElasticLoadBalancingV2::ListenerCertificate"
+  Type = "AWS::ElasticLoadBalancingV2::ListenerRule"
+  SslPolicy = "ELBSecurityPolicy-FS-1-2-Res-2019-08"
+  HealthCheckPort = "traffic-port"
+  LoadBalancerAttributes.Key.deletion_protection.enabled = true
   listener_arn = aws_lb_listener.application.arn # Must be configured
   priority     = 99
 
@@ -197,7 +229,12 @@ resource "aws_lb_listener_rule" "forward" {
   }
 }
 
-resource "aws_lb_listener_rule" "redirect" {
+resource "aws_lb_listener_rule" "redirect" { # HealthCheckProtocol is not configured in file satwik-SE-satwik-SE.github.io/elb/lb_application.tf on line: 200
+  Type = "AWS::ElasticLoadBalancingV2::ListenerCertificate"
+  Type = "AWS::ElasticLoadBalancingV2::ListenerRule"
+  SslPolicy = "ELBSecurityPolicy-FS-1-2-Res-2019-08"
+  HealthCheckPort = "traffic-port"
+  LoadBalancerAttributes.Key.deletion_protection.enabled = true
   listener_arn = aws_lb_listener.application.arn
 
   action {
