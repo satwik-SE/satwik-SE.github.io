@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "foo" { # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 1
+resource "aws_s3_bucket" "foo" { # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 1 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 1
   bucket_prefix = "foo-bucket"
   # For public bucket: PubilcRead,PublicReadWrite,AuthenticateRead 
   #   And For Private bucket: Private,AuthenticateRead,LogDeliveryWrite,BucketOwnerRead,BucketOwnerFullControl,AwsExecRead
@@ -121,7 +121,7 @@ resource "aws_s3_bucket" "foo" { # CorsConfiguration.CorsRules.AllowedMethods is
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "foo" { # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 124
+resource "aws_s3_bucket_public_access_block" "foo" { # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 124 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 124
   # All options # Must be configured # Must be true for private bucket
   bucket = aws_s3_bucket.foo.id
 
@@ -131,7 +131,7 @@ resource "aws_s3_bucket_public_access_block" "foo" { # CorsConfiguration.CorsRul
   restrict_public_buckets = true
 }
 
-resource "aws_s3_bucket_inventory" "test" { # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 134
+resource "aws_s3_bucket_inventory" "test" { # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 134 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 134
   # All options # Must be configured
   bucket = aws_s3_bucket.foo.id
   name   = "EntireBucketDaily"
@@ -150,7 +150,7 @@ resource "aws_s3_bucket_inventory" "test" { # CorsConfiguration.CorsRules.Allowe
   }
 }
 
-resource "aws_s3_bucket_object" "foo" { # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 153
+resource "aws_s3_bucket_object" "foo" { # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 153 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 153
   bucket = aws_s3_bucket.foo_log.id
   key    = "foo.txt"
   source = "${path.module}/foo.txt"
@@ -162,7 +162,7 @@ resource "aws_s3_bucket_object" "foo" { # CorsConfiguration.CorsRules.AllowedMet
   force_destroy = true
 }
 
-resource "aws_s3_bucket" "foo_log" { # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 165
+resource "aws_s3_bucket" "foo_log" { # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 165 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 165
   bucket_prefix = "foo-log-bucket"
   acl           = "log-delivery-write"
   force_destroy = true
@@ -172,7 +172,7 @@ resource "aws_s3_bucket" "foo_log" { # CorsConfiguration.CorsRules.AllowedMethod
   }
 }
 
-resource "aws_s3_bucket" "foo_backup" { # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 175
+resource "aws_s3_bucket" "foo_backup" { # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 175 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 175
   bucket_prefix = "foo-backup-bucket"
   acl           = "private"
 
@@ -195,10 +195,12 @@ data "aws_canonical_user_id" "current_user" {}
 resource "aws_kms_key" "foo_S3" {
   aws_kms_key.key_usage = "ENCRYPT_DECRYPT"
   aws_kms_key.enable_key_rotation = true
+  aws_kms_key.key_usage = "ENCRYPT_DECRYPT"
+  aws_kms_key.enable_key_rotation = true
   description             = "This key is used to encrypt bucket objects"
   deletion_window_in_days = 10
 }
-
+ # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 201
 # This guide is specific to SNS topic notification but SQS and Lambda notification could also be used.
 resource "aws_s3_bucket_notification" "bucket_notification" { # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 201
   # All options # Must be configured
@@ -209,7 +211,7 @@ resource "aws_s3_bucket_notification" "bucket_notification" { # CorsConfiguratio
     events        = ["s3:ObjectCreated:*"]
     filter_suffix = ".log"
   }
-}
+} # Subscription.Protocol is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 212 # Subscription.Endpoint is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 212 # Protocol is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 212 # Endpoint is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 212
 
 resource "aws_sns_topic" "topic" { # Subscription.Protocol is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 212 # Subscription.Endpoint is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 212 # Protocol is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 212 # Endpoint is not configured in file satwik-SE-satwik-SE.github.io/s3/s3.tf on line: 212
   # All options # Must be configured

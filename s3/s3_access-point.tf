@@ -1,4 +1,4 @@
-resource "aws_s3_access_point" "foo" { # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3_access-point.tf on line: 1
+resource "aws_s3_access_point" "foo" { # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3_access-point.tf on line: 1 # CorsConfiguration.CorsRules.AllowedMethods is not configured in file satwik-SE-satwik-SE.github.io/s3/s3_access-point.tf on line: 1
   bucket = aws_s3_bucket.foo.id # Must be configured
   name   = "foo"
 
