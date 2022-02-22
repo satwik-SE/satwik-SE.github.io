@@ -36,6 +36,7 @@ resource "aws_lb_listener" "application_listener" {
   load_balancer_arn = aws_lb.application.arn
   port              = "80"
   protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
 
   default_action {
     # All options # Must be configured
