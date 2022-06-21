@@ -1,5 +1,6 @@
 
 resource "aws_secretsmanager_secret" "sm" {
+  # oak9: aws_secretsmanager_secret.kms_key_id is not configured
   name                    = var.sm_key
   description             = "default config"
   # policy                  = Policy used by Secrets manager ARN check into iam_role file
@@ -70,6 +71,7 @@ resource "aws_secretsmanager_secret_version" "rsm-svu" {
 # }
 
 resource "aws_kms_key" "kms_key" {
+  # oak9: aws_kms_key.policy is not configured
   description              = "KMS key to encrypt/decrypt"
   deletion_window_in_days  = 10
   key_usage                = "ENCRYPT_DECRYPT"

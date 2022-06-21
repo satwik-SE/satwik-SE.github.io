@@ -36,7 +36,7 @@ resource "aws_lb_listener" "application_listener" {
   load_balancer_arn = aws_lb.application.arn
   port              = "80"
   protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-FS-1-2-Res-2019-08"
+  ssl_policy        = "ELBSecurityPolicy-FS-1-2-2020-10"
 
   default_action {
     # All options # Must be configured
@@ -91,6 +91,8 @@ resource "aws_lb_listener_certificate" "foo" {
 }
 
 resource "aws_lb_target_group" "application_tg" {
+  # oak9: HealthCheckPort is not configured
+  # oak9: HealthCheckPort should be set to any of traffic-port
   name = "foo-application"
   port = 443
   # Preferred value HTTPS for application & TLS for network
@@ -141,6 +143,8 @@ resource "aws_lb_target_group" "backup" {
 }
 
 resource "aws_lb_target_group_attachment" "foo" {
+  # oak9: LoadBalancerAttributes.Key.deletion_protection.enabled is not configured
+  # oak9: LoadBalancerAttributes.Key.deletion_protection.enabled should be set to any of True
   # All options # Must be configured
   target_group_arn  = aws_lb_target_group.backup.arn
   target_id         = "10.20.3.16"
