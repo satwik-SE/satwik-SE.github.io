@@ -2,7 +2,6 @@
 resource "aws_secretsmanager_secret" "sm" {
   name                    = var.sm_key
   description             = "default config"
-  kms_key_id              = aws_kms_key.kms_key.id
   # policy                  = Policy used by Secrets manager ARN check into iam_role file
   tags                    = {
     Name = "SM"
