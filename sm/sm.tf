@@ -70,6 +70,7 @@ resource "aws_secretsmanager_secret_version" "rsm-svu" {
 # }
 
 resource "aws_kms_key" "kms_key" {
+  # oak9: aws_kms_key.policy is not configured
   description              = "KMS key to encrypt/decrypt"
   deletion_window_in_days  = 10
   key_usage                = "ENCRYPT_DECRYPT"
