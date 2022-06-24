@@ -1,4 +1,5 @@
 resource "aws_rds_cluster" "default" {
+  # oak9: aws_rds_cluster_role_association.role_arn is not configured
   cluster_identifier      = var.identifier
   engine                  = var.engine
   engine_version          = var.engine_version
@@ -81,6 +82,10 @@ resource "aws_db_subnet_group" "default" {
 }
 
 resource "aws_sns_topic" "default" {
+  # oak9: aws_sns_topic_subscription.endpoint is not configured
+  # oak9: aws_sns_topic_subscription.endpoint should be set to any of https,email,email-json,sms,sqs,application,lambda
+  # oak9: aws_sns_topic_subscription.protocol is not configured
+  # oak9: aws_sns_topic_subscription.protocol should be set to any of https,email,email-json,sms,sqs,application,lambda
   name = "rds-events"
 }
 
@@ -104,6 +109,8 @@ resource "aws_db_event_subscription" "default" {
 }
 
 resource "aws_db_option_group" "example" {
+  # oak9: OptionConfigurations.VpcSecurityGroupMemberships is not configured
+  # oak9: OptionConfigurations.DBSecurityGroupMemberships is not configured
   name                     = "option-group-test-terraform"
   option_group_description = "Terraform Option Group"
   engine_name              = "sqlserver-ee"
