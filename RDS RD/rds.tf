@@ -1,4 +1,4 @@
-resource "aws_db_instance" "default" {
+resource "aws_db_instance" "instance" {
   depends_on              = [aws_security_group.default]
   identifier              = var.identifier
   allocated_storage       = 10
@@ -28,13 +28,13 @@ resource "aws_db_instance" "default" {
 }
 
 # The feature name S3_INTEGRATION is not valid for the engine MySQL Community Edition.
-# resource "aws_db_instance_role_association" "example" {
+# resource "aws_db_instance_role_association" "instance" {
 #   db_instance_identifier = aws_db_instance.default.id
 #   feature_name           = "S3_INTEGRATION"
 #   role_arn               = aws_iam_role.rds_s3_role.arn
 # }
 
-resource "aws_db_parameter_group" "parameter_group" {
+resource "aws_db_parameter_group" "instance" {
   name        = "default-mysql57"
   family      = "mysql5.7"
   description = "default_mysql57"
@@ -45,7 +45,7 @@ resource "aws_db_parameter_group" "parameter_group" {
   }
 }
 
-resource "aws_db_proxy" "db_proxy" {
+resource "aws_db_proxy" "instance" {
   name                   = "db-proxy"
   debug_logging          = false
   engine_family          = "MYSQL"
@@ -68,7 +68,7 @@ resource "aws_db_proxy" "db_proxy" {
   }
 }
 
-resource "aws_db_proxy_default_target_group" "this" {
+resource "aws_db_proxy_default_target_group" "instance" {
   db_proxy_name = aws_db_proxy.db_proxy.name
   connection_pool_config {
     connection_borrow_timeout    = 300
@@ -78,17 +78,17 @@ resource "aws_db_proxy_default_target_group" "this" {
     session_pinning_filters      = []
   }
 }
-resource "aws_db_subnet_group" "default" {
+resource "aws_db_subnet_group" "instance" {
   name        = "main_subnet_group"
   description = "Our main group of subnets"
   subnet_ids  = [aws_subnet.subnet_1[0].id,aws_subnet.subnet_1[1].id]
 }
 
-resource "aws_sns_topic" "default" {
+resource "aws_sns_topic" "instance" {
   name = "rds-events"
 }
 
-resource "aws_db_event_subscription" "default" {
+resource "aws_db_event_subscription" "instance" {
   name      = "rds-event-sub"
   sns_topic = aws_sns_topic.default.arn
   source_type = "db-instance"
@@ -107,7 +107,7 @@ resource "aws_db_event_subscription" "default" {
   ]
 }
 
-resource "aws_db_option_group" "example" {
+resource "aws_db_option_group" "instance" {
   name                     = "option-group-test-terraform"
   option_group_description = "Terraform Option Group"
   engine_name              = "sqlserver-ee"
