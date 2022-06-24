@@ -2,7 +2,6 @@ resource "aws_db_instance" "instance" {
   depends_on              = [aws_security_group.default]
   identifier              = var.identifier
   allocated_storage       = 10
-  engine                  = var.engine
   engine_version          = var.engine_version
   instance_class          = var.instance_class
   name                    = var.db_name
@@ -11,14 +10,10 @@ resource "aws_db_instance" "instance" {
   vpc_security_group_ids  = [aws_security_group.default.id]
   db_subnet_group_name    = aws_db_subnet_group.default.id
   parameter_group_name    = aws_db_parameter_group.parameter_group.id
-  availability_zone       = "us-east-2a"
-  backup_retention_period = 5
-  enabled_cloudwatch_logs_exports = ["audit", "error", "general", "slowquery"]
   storage_encrypted       = true
   apply_immediately       = true
   max_allocated_storage   = 20
   deletion_protection     = false
-  iam_database_authentication_enabled = true
   skip_final_snapshot    = true
   final_snapshot_identifier = "DELETE"
   tags = {
