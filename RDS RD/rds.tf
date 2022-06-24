@@ -85,6 +85,10 @@ resource "aws_db_subnet_group" "instance" {
 }
 
 resource "aws_sns_topic" "instance" {
+  # oak9: aws_sns_topic_subscription.endpoint is not configured
+  # oak9: aws_sns_topic_subscription.endpoint should be set to any of https,email,email-json,sms,sqs,application,lambda
+  # oak9: aws_sns_topic_subscription.protocol is not configured
+  # oak9: aws_sns_topic_subscription.protocol should be set to any of https,email,email-json,sms,sqs,application,lambda
   name = "rds-events"
 }
 
@@ -108,6 +112,8 @@ resource "aws_db_event_subscription" "instance" {
 }
 
 resource "aws_db_option_group" "instance" {
+  # oak9: OptionConfigurations.VpcSecurityGroupMemberships is not configured
+  # oak9: OptionConfigurations.DBSecurityGroupMemberships is not configured
   name                     = "option-group-test-terraform"
   option_group_description = "Terraform Option Group"
   engine_name              = "sqlserver-ee"
