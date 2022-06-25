@@ -19,6 +19,9 @@ resource "azurerm_mysql_server" "my" {
 }
 
 resource "azurerm_mssql_server" "ms" {
+  minimum_tls_version = 1.2
+  # oak9: publicNetworkAccess is not configured
+  # oak9: publicNetworkAccess should be set to any of Disabled
   name                         = var.mssql_server_name
   resource_group_name          = azurerm_resource_group.foo.name
   location                     = azurerm_resource_group.foo.location
