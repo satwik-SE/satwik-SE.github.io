@@ -32,3 +32,9 @@ resource "google_sql_database_instance" "e" {
     }
   }
 }
+
+resource "google_dns_managed_zone" "example-zone" {
+  name        = "example-zone"
+  dns_name    = "example-${random_id.rnd.hex}.com."
+  
+}
