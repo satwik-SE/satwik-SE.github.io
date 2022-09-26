@@ -1,6 +1,21 @@
 resource "google_storage_bucket" "storage" {
-  description             = "KMS key 1"
-  deletion_window_in_days = 10
+  name          = "image-store.com"
+  location      = "EU"
+  force_destroy = true
+
+  uniform_bucket_level_access = false
+  cors {
+    origin          = ["*"]
+    method          = ["*"]
+    response_header = ["*"]
+    max_age_seconds = 3600
+  }
+}
+
+resource "google_storage_bucket_object" "bucket" {
+  name   = "butterfly01"
+  source = "/images/nature/garden-tiger-moth.jpg"
+  bucket = google_storage_bucket.storage.name
 }
 
 resource "google_app_engine_flexible_app_version" "app_version" {
@@ -10,10 +25,6 @@ resource "google_app_engine_flexible_app_version" "app_version" {
     security_level = "secure_default"
   }
   
-}
-
-resource "google_app_engine_application" "app" {
-    description = ""
 }
 
 resource "google_kms_crypto_key" "kms" {
