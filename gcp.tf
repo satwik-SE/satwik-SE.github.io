@@ -50,7 +50,7 @@ resource "google_dns_managed_zone" "example-zone" {
   
 }
 
-resource "google_container_cluster" "primary" {
+resource "google_container_cluster" "container" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
   initial_node_count = 3
@@ -61,7 +61,7 @@ resource "google_container_cluster" "primary" {
   }
 }
 
-resource "google_container_node_pool" "primary_preemptible_nodes" {
+resource "google_container_node_pool" "node_pool" {
   name       = "my-node-pool"
   cluster    = google_container_cluster.primary.id
   node_count = 1
@@ -69,4 +69,59 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
   node_config {
     disk_size_gb = ""
 }
+}
+
+resource "google_compute_firewall" "firewall" {
+  name    = "test-firewall"
+  network = google_compute_network.network.name
+
+  allow {
+    protocol = "all"
+  }
+
+  source_ranges = ["*"]
+}
+
+resource "google_compute_network" "network" {
+  name = "test-network"
+}
+
+resource "google_compute_subnetwork" "subnetwork" {
+  name          = "test-subnetwork"
+  ip_cidr_range = "10.2.0.0/16"
+  region        = "us-central1"
+  network       = google_compute_network.network.name
+  secondary_ip_range {
+    range_name    = "tf-test-secondary-range-update1"
+    ip_cidr_range = "192.168.10.0/24"
+  }
+}
+
+resource "google_compute_subnetwork_iam_binding" "subnetwork_binding" {
+  subnetwork = google_compute_subnetwork.subnetwork.name
+  role = "roles/compute.networkUser"
+  members = ["allUsers"]
+}
+
+resource "google_compute_instance" "instance" {
+  name         = "test"
+  machine_type = "e2-medium"
+  zone         = "us-central1-a"
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-11"
+    }
+  }
+
+  attached_disk {
+    source = ""
+  }
+
+}
+
+resource "google_compute_instance_iam_binding" "instance_binding" {
+  instinstance_name = google_compute_instance.instance.name
+  role = "roles/compute.networkUser"
+  members = ["allUsers"]
 }
