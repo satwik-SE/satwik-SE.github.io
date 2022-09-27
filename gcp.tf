@@ -63,7 +63,7 @@ resource "google_container_cluster" "container" {
 
 resource "google_container_node_pool" "node_pool" {
   name       = "my-node-pool"
-  cluster    = google_container_cluster.primary.id
+  cluster    = google_container_cluster.container.name
   node_count = 1
 
   node_config {
