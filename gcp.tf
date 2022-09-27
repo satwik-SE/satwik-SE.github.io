@@ -125,3 +125,44 @@ resource "google_compute_instance_iam_binding" "instance_binding" {
   role = "roles/compute.networkUser"
   members = ["allUsers"]
 }
+
+resource "google_pubsub_topic" "topic" {
+  name = "example-topic"
+
+  labels = {
+    foo = "bar"
+  }
+
+  message_retention_duration = "86600s"
+}
+
+resource "google_pubsub_subscription" "subscription" {
+  name  = "example-subscription"
+  topic = google_pubsub_topic.topic.name
+
+  ack_deadline_seconds = 20
+
+  labels = {
+    foo = "bar"
+  }
+
+  push_config {
+    push_endpoint = "https://example.com/push"
+
+    attributes = {
+      x-goog-version = "v1"
+    }
+  }
+}
+
+resource "google_pubsub_topic_iam_member" "topic_member" {
+  topic = google_pubsub_topic.topic.name
+  role = "roles/viewer"
+  member = "allUsers"
+}
+
+resource "google_pubsub_subscription_iam_member" "subscription_member" {
+  subscription = google_pubsub_subscription.subscription.name
+  role         = "roles/editor"
+  member       = "allAuthenticatedUsers"
+}
