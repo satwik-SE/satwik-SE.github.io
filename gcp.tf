@@ -162,6 +162,7 @@ resource "google_pubsub_topic_iam_member" "topic_member" {
 }
 
 resource "google_pubsub_subscription_iam_member" "subscription_member" {
+  # oak9: google_pubsub_subscription_iam_member.etag is not configured
   subscription = google_pubsub_subscription.subscription.name
   role         = "roles/editor"
   member       = "allAuthenticatedUsers"
