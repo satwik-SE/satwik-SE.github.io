@@ -40,6 +40,7 @@ resource "google_compute_firewall_policy" "firewall-policy" {
 }
 
 resource "google_compute_firewall_policy_rule" "firewall-policy-1" {
+  # oak9: Firewall rule is set to allow traffic from all sources
   enable_logging = false
   direction = "INGRESS"
   action = "allow"
