@@ -22,21 +22,3 @@ resource "google_pubsub_subscription" "subscription1" {
     }
   }
 }
-
-resource "google_pubsub_subscription" "subscription2" {
-  name  = "example-subscription-2"
-  topic = google_pubsub_topic.topic.name
-
-  retain_acked_messages = true
-
-  push_config {
-    push_endpoint = "https://example.com/push"
-
-    attributes = {
-      x-goog-version = "v1"
-    }
-  }
-  expiration_policy {
-    ttl = "1235422s"
-  }
-}

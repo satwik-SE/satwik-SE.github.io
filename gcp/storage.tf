@@ -11,9 +11,6 @@ resource "google_storage_bucket" "storage1" {
     max_age_seconds = 3600
   }
 
-  logging {
-    log_bucket = google_storage_bucket.storage2.name
-  }
 }
 
 
