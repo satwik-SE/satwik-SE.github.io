@@ -9,7 +9,7 @@ resource "google_container_cluster" "container" {
   }
 }
 
-resource "google_container_node_pool" "node_pool" {
+resource "google_container_node_pool" "container" {
   name       = "my-node-pool"
   cluster    = google_container_cluster.container.name
   node_count = 1

@@ -1,4 +1,4 @@
-resource "google_pubsub_topic" "topic" {
+resource "google_pubsub_topic" "pub-sub" {
   name = "example-topic"
 
   labels = {
@@ -8,9 +8,9 @@ resource "google_pubsub_topic" "topic" {
   message_retention_duration = "86600s"
 }
 
-resource "google_pubsub_subscription" "subscription1" {
+resource "google_pubsub_subscription" "pub-sub" {
   name  = "example-subscription"
-  topic = google_pubsub_topic.topic.name
+  topic = google_pubsub_topic.pub-sub.name
 
   ack_deadline_seconds = 20
 

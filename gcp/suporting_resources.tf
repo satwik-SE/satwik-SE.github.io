@@ -29,7 +29,7 @@ resource "google_compute_subnetwork" "subnetwork" {
   }
 }
 
-resource "google_compute_subnetwork_iam_binding" "subnetwork_binding" {
+resource "google_compute_subnetwork_iam_binding" "subnetwork" {
   subnetwork = google_compute_subnetwork.subnetwork.name
   role = "roles/compute.networkUser"
   members = ["allUsers"]
