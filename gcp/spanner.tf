@@ -30,6 +30,7 @@ resource "google_spanner_instance_iam_binding" "spanner"{
     instance = google_spanner_instance.spanner.name
     role = ""
     members = [ "allUsers" ]
+  # oak9: google_spanner_instance_iam_binding.members is not configured
 }
 
 resource "google_spanner_instance_iam_member" "spanner"{
