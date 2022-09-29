@@ -46,6 +46,7 @@ resource "google_compute_firewall_policy_rule" "firewall-policy-1" {
   firewall_policy = google_compute_firewall_policy.firewall-policy.name
   match {
     src_ip_ranges = ["0.0.0.0/0"]
+    # oak9: Firewall rule is set to allow traffic from all sources
     layer4_configs {
       ip_protocol = "tcp"
     }
