@@ -33,6 +33,7 @@ resource "google_spanner_instance_iam_binding" "spanner"{
 }
 
 resource "google_spanner_instance_iam_member" "spanner"{
+    # oak9: google_spanner_instance_iam_member.etag is not configured
     instance = google_spanner_instance.spanner.name
     role = ""
     member = "allAuthenticatedUsers"
