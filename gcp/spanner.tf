@@ -7,6 +7,7 @@ resource "google_spanner_instance" "spanner" {
 resource "google_spanner_database" "spanner-1" {
   instance = google_spanner_instance.spanner.name
   name     = "my-database"
+  # oak9: google_spanner_database.encryption_config.kms_key_name is not configured
   version_retention_period = "3d"
   ddl = [
     "CREATE TABLE t1 (t1 INT64 NOT NULL,) PRIMARY KEY(t1)",
