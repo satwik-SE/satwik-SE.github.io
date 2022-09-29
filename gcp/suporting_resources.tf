@@ -35,5 +35,30 @@ resource "google_compute_subnetwork_iam_binding" "subnetwork" {
   members = ["allUsers"]
 }
 
+resource "google_compute_firewall_policy" "firewall-policy" {
+  name = "firewall-test"
+}
 
+resource "google_compute_firewall_policy_rule" "firewall-policy-1" {
+  enable_logging = false
+  direction = "INGRESS"
+  action = "allow"
+  firewall_policy = google_compute_firewall_policy.firewall-policy.name
+  match {
+    src_ip_ranges = ["0.0.0.0/0"]
+    layer4_configs {
+      ip_protocol = "tcp"
+    }
+  }
+}
+
+resource "google_compute_firewall_policy_rule" "firewall-policy-2" {
+  enable_logging = false
+  direction = "EGRESS"
+  action = "allow"
+  firewall_policy = google_compute_firewall_policy.firewall-policy.name
+  match {
+    dest_ip_ranges = ["*"]
+  }
+}
 
