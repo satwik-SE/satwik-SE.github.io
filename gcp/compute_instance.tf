@@ -32,6 +32,7 @@ resource "google_compute_instance_iam_binding" "instance_binding" {
 }
 
 resource "google_compute_instance_iam_member" "instance_member" {
+  # oak9: google_compute_instance_iam_member.etag is not configured
   instinstance_name = google_compute_instance.instance.name
   member = "allAuthenticatedUsers"
   role = "roles/compute.networkUser"
