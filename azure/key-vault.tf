@@ -54,6 +54,7 @@ resource "azurerm_key_vault" "key_vault_foo" {
     key_permissions                     = ["all"]
     secret_permissions                  = ["all"]
     certificate_permissions             = ["all"]
+  # oak9: Key vault's resource based policies grant broad permissions to certificates
   }
 }
 
