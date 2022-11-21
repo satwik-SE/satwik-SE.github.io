@@ -52,6 +52,7 @@ resource "azurerm_key_vault" "key_vault_foo" {
 
     azure_ad_user_principal_names       = ["foo1@example.com", "foo2@example.com"]
     key_permissions                     = ["all"]
+    # oak9: Key vault's resource based policies grant broad permissions to keys
     secret_permissions                  = ["all"]
     # oak9: Key vault's resource based policies grant broad permissions to secrets
     certificate_permissions             = ["all"]
