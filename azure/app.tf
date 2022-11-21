@@ -74,6 +74,7 @@ resource "azurerm_application_gateway" "satwiktest" {
     frontend_port {
         name = var.frontend_port_200
         port = 200
+    # oak9: azurerm_application_gateway.frontend_port.port is not configured
     }
 
     dynamic "http_listener" {
