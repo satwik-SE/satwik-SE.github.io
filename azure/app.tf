@@ -32,6 +32,7 @@ locals {
   }]
 }
 resource "azurerm_application_gateway" "satwiktest" {
+    # oak9: azurerm_application_gateway.backend_address_pool.fqdns is not configured
     name = var.application_gateway_name
     # oak9: azurerm_application_gateway.backend_http_settings.affinity_cookie_name is not configured
     # oak9: microsoft_networkapplication_gateways.application_gateways.backend_http_settings_collection[0].name is not configured
