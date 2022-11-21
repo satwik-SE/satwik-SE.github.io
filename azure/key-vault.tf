@@ -18,6 +18,7 @@ resource "azurerm_resource_group" "foo" {
 data "azurerm_client_config" "current" {}
 
 resource "azurerm_key_vault" "key_vault_foo" {
+  # oak9: Role based access control (RBAC) is the preferred approach to control access to key vaults. Currently, you are using resouce based access control policies which become hard to manage at scale. 
   name                              = "foo-keyvault"
   location                          = azurerm_resource_group.foo.location
   resource_group_name               = azurerm_resource_group.foo.name
