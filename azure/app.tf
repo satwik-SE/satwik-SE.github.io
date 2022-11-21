@@ -32,6 +32,7 @@ locals {
   }]
 }
 resource "azurerm_application_gateway" "satwiktest" {
+    # oak9: microsoft_networkapplication_gateways.application_gateways.frontend_ip_configurations[0].private_ip_allocation_method is not configured
     # oak9: microsoft_networkapplication_gateways.application_gateways.frontend_ip_configurations[0].private_ip_address is not configured
     # oak9: azurerm_application_gateway.backend_http_settings.request_timeout is not configured
     # oak9: azurerm_application_gateway.backend_address_pool.fqdns is not configured
