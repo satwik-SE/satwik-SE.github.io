@@ -74,6 +74,7 @@ resource "azurerm_key_vault_key" "foo_key" {
 }
 
 resource "azurerm_key_vault_secret" "foo_secret" {
+  # oak9: azurerm_key_vault_secret.tags is not configured
   name = "foo-vault_secret"
   key_vault_id = azurerm_key_vault.key_vault_foo.id
 }
