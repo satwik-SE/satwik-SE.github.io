@@ -40,6 +40,7 @@ resource "azurerm_application_gateway" "satwiktest" {
     sku {
         name = "Standard_v2"
         tier = "Standard_v2"
+    # oak9: azurerm_application_gateway.sku.tier is not configured
     }
     autoscale_configuration {
         min_capacity = 0
