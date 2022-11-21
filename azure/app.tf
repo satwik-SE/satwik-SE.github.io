@@ -33,6 +33,7 @@ locals {
 }
 resource "azurerm_application_gateway" "satwiktest" {
     name = var.application_gateway_name
+    # oak9: microsoft_networkapplication_gateways.application_gateways.backend_http_settings_collection[0].name is not configured
     enable_http2 = false
     resource_group_name = "SecurityTestingRG"
     location            = "East US"
