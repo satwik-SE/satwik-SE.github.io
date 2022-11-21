@@ -32,6 +32,7 @@ locals {
   }]
 }
 resource "azurerm_application_gateway" "satwiktest" {
+    # oak9: azurerm_application_gateway.tags is not configured
     # oak9: azurerm_application_gateway.backend_http_settings.connection_draining.drain_timeout_sec is not configured
     # oak9: azurerm_application_gateway.backend_http_settings.connection_draining.enabled is not configured
     # oak9: azurerm_application_gateway.zones is not configured to be resilient to single zone failures
