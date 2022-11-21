@@ -32,6 +32,7 @@ locals {
   }]
 }
 resource "azurerm_application_gateway" "satwiktest" {
+    # oak9: microsoft_networkapplication_gateways.application_gateways.backend_http_settings_collection[0].trusted_root_certificates is not configured
     name = var.application_gateway_name
     enable_http2 = false
     resource_group_name = "SecurityTestingRG"
