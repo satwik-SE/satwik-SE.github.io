@@ -1,4 +1,5 @@
 resource "google_container_cluster" "container" {
+  # oak9: Monitoring is not enabled for container cluster
   # oak9: Logging is not enabled for container cluster
   name               = "marcellus-wallace"
   location           = "us-central1-a"
