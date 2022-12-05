@@ -32,6 +32,7 @@ locals {
   }]
 }
 resource "azurerm_application_gateway" "satwiktest" {
+    # oak9: azurerm_application_gateway.authentication_certificate is not configured
     # oak9: azurerm_application_gateway.ssl_policy is not configured
     name = var.application_gateway_name
     enable_http2 = false
