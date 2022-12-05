@@ -10,6 +10,7 @@ resource "google_container_cluster" "container" {
 }
 
 resource "google_container_node_pool" "container" {
+  # oak9: google_container_node_pool.node_config.labels is not configured
   name       = "my-node-pool"
   cluster    = google_container_cluster.container.name
   node_count = 1
