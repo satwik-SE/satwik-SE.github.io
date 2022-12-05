@@ -1,4 +1,5 @@
 resource "google_container_cluster" "container" {
+  # oak9: google_container_cluster.node_config.image_type is not configured
   # oak9: google_container_cluster.node_config.labels is not configured
   # oak9: google_container_cluster.workload_identity_config is not configured
   # oak9: Monitoring is not enabled for container cluster
