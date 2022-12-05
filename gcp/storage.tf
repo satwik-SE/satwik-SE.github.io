@@ -26,6 +26,7 @@ resource "google_storage_bucket_object" "storage-1" {
 }
 
 resource "google_storage_bucket" "storage-2" {
+  # oak9: google_storage_bucket.versioning.enabled is not configured
   # oak9: google_storage_bucket.cors is not configured
   # oak9: google_storage_bucket.logging is not configured
   name          = "image-store.com"
