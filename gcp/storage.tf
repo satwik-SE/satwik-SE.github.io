@@ -1,4 +1,5 @@
 resource "google_storage_bucket" "storage-1" {
+  # oak9: google_storage_bucket.retention_policy is not configured
   name          = "image-store.com"
   # oak9: Buckets are not encrypted using customer-managed keys
   location      = "EU"
