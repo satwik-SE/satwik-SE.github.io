@@ -1,4 +1,5 @@
 resource "google_storage_bucket" "storage-1" {
+  # oak9: google_storage_bucket.logging is not configured
   name          = "image-store.com"
   location      = "EU"
   force_destroy = true
