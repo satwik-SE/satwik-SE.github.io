@@ -6,6 +6,7 @@ resource "google_storage_bucket" "storage-1" {
   uniform_bucket_level_access = false
   cors {
     origin          = ["*"]
+    # oak9: google_storage_bucket.cors.origin is defined to allow requests from any origin
     method          = ["*"]
     # oak9: google_storage_bucket.cors.method is defined to allow all HTTP methods
     response_header = ["*"]
