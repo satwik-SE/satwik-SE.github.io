@@ -1,4 +1,5 @@
 resource "google_spanner_instance" "spanner" {
+  # oak9: google_spanner_instance.labels is not configured
   config       = "regional-europe-west1"
   display_name = "main-instance"
   num_nodes    = 1
