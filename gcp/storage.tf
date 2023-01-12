@@ -7,6 +7,7 @@ resource "google_storage_bucket" "storage-1" {
   cors {
     origin          = ["*"]
     method          = ["*"]
+    # oak9: google_storage_bucket.cors.method is defined to allow all HTTP methods
     response_header = ["*"]
     max_age_seconds = 3600
   }
