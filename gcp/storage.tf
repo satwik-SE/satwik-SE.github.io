@@ -27,6 +27,7 @@ resource "google_storage_bucket_object" "storage-1" {
 
 resource "google_storage_bucket" "storage-2" {
   name          = "image-store.com"
+  # oak9: Buckets are not encrypted using customer-managed keys
   location      = "EU"
   force_destroy = true
 
