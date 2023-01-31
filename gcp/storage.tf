@@ -1,4 +1,5 @@
 resource "google_storage_bucket" "storage-1" {
+  # oak9: Define asset inventory tags for your Storage Bucket
   name          = "image-store.com"
   location      = "EU"
   force_destroy = true
