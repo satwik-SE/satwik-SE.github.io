@@ -3,7 +3,7 @@ resource "google_storage_bucket" "storage-1" {
   location      = "EU"
   force_destroy = true
 
-  uniform_bucket_level_access = false
+  uniform_bucket_level_access = true
   cors {
     origin          = ["*"]
     method          = ["*"] # oak9: cors.method should be set to any of get, put, post
