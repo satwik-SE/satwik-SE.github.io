@@ -8,6 +8,7 @@ resource "google_compute_instance" "instance" {
       image = "debian-cloud/debian-11"
     }
     kms_key_self_link = ""
+    # oak9: google_compute_instance.boot_disk.kms_key_self_link is not configured
     disk_encryption_key_raw = ""
   }
 
