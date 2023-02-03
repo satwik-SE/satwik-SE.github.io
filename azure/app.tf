@@ -32,6 +32,7 @@ locals {
   }]
 }
 resource "azurerm_application_gateway" "satwiktest" {
+    # oak9: Select either a predefined or custom SSL (TLS) policy type
     name = var.application_gateway_name
     enable_http2 = false
     resource_group_name = "SecurityTestingRG"
