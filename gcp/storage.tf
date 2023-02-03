@@ -1,5 +1,6 @@
 resource "google_storage_bucket" "storage-1" {
   name          = "image-store.com"
+  # oak9: Use Customer-Managed Keys for Bucket Encryption
   location      = "EU"
   force_destroy = true
 
