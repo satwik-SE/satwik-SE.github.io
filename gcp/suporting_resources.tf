@@ -40,7 +40,7 @@ resource "google_compute_firewall_policy" "firewall-policy" {
 }
 
 resource "google_compute_firewall_policy_rule" "firewall-policy-1" {
-  enable_logging = false
+  enable_logging = true
   direction = "INGRESS"
   action = "allow"
   firewall_policy = google_compute_firewall_policy.firewall-policy.name
