@@ -8,6 +8,7 @@ resource "google_compute_instance" "instance" {
       image = "debian-cloud/debian-11"
     }
     kms_key_self_link = ""
+    # oak9: Manage the OS disk encryption using customer managed keys
     disk_encryption_key_raw = ""
   }
 
