@@ -1,4 +1,5 @@
 resource "google_compute_instance" "instance" {
+  # oak9: google_compute_instance.labels is not configured
   name         = "test"
   machine_type = "e2-medium"
   zone         = "us-central1-a"
