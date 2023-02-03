@@ -52,7 +52,7 @@ resource "azurerm_application_gateway" "satwiktest" {
     backend_http_settings {
         name = var.http_setting_name
         port = 80
-        protocol = "Http"
+        protocol = "Https"
         cookie_based_affinity = "Disabled"
     }
 
