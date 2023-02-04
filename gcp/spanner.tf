@@ -48,5 +48,6 @@ resource "google_spanner_database_iam_member" "spanner"{
     instance = google_spanner_database.spanner-2.name
     role = ""
     member = "allAuthenticatedUsers"
+  # oak9: google_spanner_database_iam_member.member is not configured
 }
 
