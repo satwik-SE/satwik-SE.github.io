@@ -1,4 +1,5 @@
 resource "google_spanner_instance" "spanner" {
+  # oak9: Define asset inventory tags for your Google Spanner
   config       = "regional-europe-west1"
   display_name = "main-instance"
   num_nodes    = 1
