@@ -1,0 +1,4 @@
+resources:
+  - ./manifests/ingress.yml
+  - ./manifests/brs-deployment.yml
+  - ./manifests/brs-service.yml

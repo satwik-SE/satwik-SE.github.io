@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oak9-brs
+  namespace: sac
+spec:
+  selector:
+    matchLabels:
+      app: oak9-brs
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: oak9-brs
+    spec:
+      containers:
+      - name: oak9-brs
+        image: 811392992219.dkr.ecr.us-east-2.amazonaws.com/oak9sac-brs
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: brs-api
+          containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "1"
+          limits:
+            memory: "256Mi"
+            cpu: "4"
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+      restartPolicy: Always
+      
