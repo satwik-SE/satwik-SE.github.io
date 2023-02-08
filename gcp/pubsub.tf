@@ -9,6 +9,7 @@ resource "google_pubsub_topic" "pub-sub" {
 }
 
 resource "google_pubsub_subscription" "pub-sub" {
+  # oak9: google_pubsub_subscription.labels is not configured
   # oak9: google_pubsub_subscription.expiration_policy is not configured
   # oak9: google_pubsub_subscription.message_retention_duration is not configured
   name  = "example-subscription"
