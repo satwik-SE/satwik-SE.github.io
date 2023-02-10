@@ -1,0 +1,74 @@
+---
+# Deploy singleton instance in the whole cluster for some unique data sources, like kube-state-metrics
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: heartbeat
+  namespace: monitoring
+  labels:
+    k8s-app: heartbeat
+  annotations:
+    configmap.reloader.stakater.com/reload: "heartbeat-deployment-config"
+spec:
+  selector:
+    matchLabels:
+      k8s-app: heartbeat
+  template:
+    metadata:
+      labels:
+        k8s-app: heartbeat
+    spec:
+      serviceAccountName: heartbeat
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+        - name: heartbeat
+          image: docker.elastic.co/beats/heartbeat:7.15.0
+          args: [-c, /etc/heartbeat.yml, -e]
+          env:
+            - name: ELASTICSEARCH_HOST
+              value: https://oak9.es.us-east-1.aws.found.io
+            - name: ELASTICSEARCH_PORT
+              value: '9243'
+            - name: ELASTICSEARCH_USERNAME
+              valueFrom:  
+                secretKeyRef:
+                  name: heartbeat
+                  key: heartbeat-elastic-username            
+            - name: ELASTICSEARCH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: heartbeat
+                  key: heartbeat-elastic-password
+            - name: ELASTIC_CLOUD_ID
+              value: "Oak9:dXMtZWFzdC0xLmF3cy5mb3VuZC5pbyRjZDIyZjI0M2IyNDI0ZmQ0YWQ3NjQ5MWM2ZTEwMGIyYiRlNzA5MWEyZjQzNTA0NmI3ODhmYWYzZDk5NDgzNTEyNA=="
+            - name: ELASTIC_CLOUD_AUTH
+              value:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+          securityContext:
+            runAsUser: 0
+          resources:
+            limits:
+              memory: 200Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          volumeMounts:
+            - name: config
+              mountPath: /etc/heartbeat.yml
+              readOnly: true
+              subPath: heartbeat.yml
+            - name: data
+              mountPath: /usr/share/heartbeat/data
+      volumes:
+        - name: config
+          configMap:
+            defaultMode: 0600
+            name: heartbeat-deployment-config
+        - name: data
+          hostPath:
+            path: /var/lib/heartbeat-data
+            type: DirectoryOrCreate

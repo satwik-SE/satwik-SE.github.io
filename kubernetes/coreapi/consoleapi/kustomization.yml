@@ -1,4 +1,0 @@
-resources:
-  - manifests/deployment.yml
-  - manifests/service.yml
-  - manifests/service-account.yml

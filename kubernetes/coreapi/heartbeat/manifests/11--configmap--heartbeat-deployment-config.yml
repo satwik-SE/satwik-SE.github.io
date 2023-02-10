@@ -1,0 +1,101 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: heartbeat-deployment-config
+  namespace: monitoring
+  labels:
+    k8s-app: heartbeat
+data:
+  heartbeat.yml: |-
+    heartbeat.monitors:
+      - type: icmp
+        schedule: '@every 60s'
+        name: ICMP Checks
+        hosts:
+          - "console.oak9.io"
+          - "stageconsole.oak9.cloud"
+          - "devconsole.oak9.cloud"
+          - "api.oak9.io"
+          - "stageapi.oak9.cloud"
+          - "devapi.oak9.cloud"
+          - "localhost"
+      - type: http
+        schedule: '@every 60s'
+        name: oak9 Homepage
+        urls:
+          - "https://oak9.io"
+        check.response:
+          status: 200
+      - type: http
+        schedule: '@every 60s'
+        name: oak9 Prod Console
+        urls:
+          - "https://console.oak9.io"
+        check.response:
+          status: 200
+      - type: http
+        schedule: '@every 60s'
+        name: oak9 Stage Console
+        urls:
+          - "https://stageconsole.oak9.cloud"
+        check.response:
+          status: 200
+      - type: http
+        schedule: '@every 60s'
+        name: oak9 Dev Console
+        urls:
+          - "https://devconsole.oak9.cloud"
+        check.response:
+          status: 200
+      - type: http
+        schedule: '@every 60s'
+        name: oak9 Prod API
+        urls:
+          - "https://api.oak9.io/console/identity/organization?r="
+        check.response:
+          status: 401
+    heartbeat.autodiscover:
+    #  # Autodiscover pods
+      providers:
+        - type: kubernetes
+          resource: pod
+          scope: cluster
+          node: ${NODE_NAME}
+          hints.enabled: true
+    
+    #  # Autodiscover services
+      providers:
+        - type: kubernetes
+          resource: service
+          scope: cluster
+          node: ${NODE_NAME}
+          hints.enabled: true
+    
+    #  # Autodiscover nodes
+    #  providers:
+    #    - type: kubernetes
+    #      resource: node
+    #      node: ${NODE_NAME}
+    #      scope: cluster
+    #      templates:
+    #        # Example, check SSH port of all cluster nodes:
+    #        - condition: ~
+    #          config:
+    #            - hosts:
+    #                - ${data.host}:22
+    #              name: ${data.kubernetes.node.name}
+    #              schedule: '@every 10s'
+    #              timeout: 5s
+    #              type: tcp
+
+    processors:
+      - add_cloud_metadata:
+
+    cloud.id: ${ELASTIC_CLOUD_ID}
+    cloud.auth: ${ELASTIC_CLOUD_AUTH}
+
+    output.elasticsearch:
+      hosts: ['${ELASTICSEARCH_HOST:elasticsearch}:${ELASTICSEARCH_PORT:9200}']
+      username: ${ELASTICSEARCH_USERNAME}
+      password: ${ELASTICSEARCH_PASSWORD}
