@@ -21,6 +21,7 @@ resource "aws_iam_role" "eks_developer_role" {
     name = "eks-developer-access-policy"
 
     policy = jsonencode({
+      # oak9: Explicitly define resources in roles
       Version = "2012-10-17"
       Statement = [
         {

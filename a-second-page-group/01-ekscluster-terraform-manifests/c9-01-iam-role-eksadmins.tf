@@ -21,6 +21,8 @@ resource "aws_iam_role" "eks_admin_role" {
     name = "eks-full-access-policy"
 
     policy = jsonencode({
+      # oak9: Explicitly define resources in roles
+      # oak9: Avoid using wildcards ['*'] in IAM actions
       Version = "2012-10-17"
       Statement = [
         {
