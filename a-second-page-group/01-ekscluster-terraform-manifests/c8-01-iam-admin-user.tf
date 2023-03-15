@@ -4,6 +4,7 @@ resource "aws_iam_user" "admin_user" {
   path = "/"
   force_destroy = true
   tags = local.common_tags
+  # oak9: Define asset inventory tags
 }
 
 # Resource: Admin Access Policy - Attach it to admin user

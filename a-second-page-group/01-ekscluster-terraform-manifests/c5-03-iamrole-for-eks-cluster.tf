@@ -1,5 +1,6 @@
 # Create IAM Role
 resource "aws_iam_role" "eks_master_role" {
+  # oak9: Define asset inventory tags
   name = "${local.name}-eks-master-role"
 
   assume_role_policy = <<POLICY

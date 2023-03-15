@@ -1,5 +1,6 @@
 # IAM Role for EKS Node Group 
 resource "aws_iam_role" "eks_nodegroup_role" {
+  # oak9: Define asset inventory tags
   name = "${local.name}-eks-nodegroup-role"
 
   assume_role_policy = jsonencode({
