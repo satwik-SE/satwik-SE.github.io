@@ -33,6 +33,7 @@ resource "aws_iam_user" "eksadmin_user" {
   path = "/"
   force_destroy = true
   tags = local.common_tags
+  # oak9: Define asset inventory tags
 }
 
 # Resource: AWS IAM Group Membership
