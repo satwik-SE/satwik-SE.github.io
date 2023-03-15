@@ -37,6 +37,7 @@ resource "aws_iam_role" "eks_admin_role" {
   }    
 
   tags = {
+    # oak9: Define asset inventory tags
     tag-key = "${local.name}-eks-admin-role"
   }
 }
