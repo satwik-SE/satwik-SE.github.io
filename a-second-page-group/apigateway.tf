@@ -1,17 +1,35 @@
-resource "aws_api_gateway_stage" "sac_api_gateway_stage" {
-  deployment_id         = aws_api_gateway_deployment.sac_api_gateway_deployment.id  
-  rest_api_id           = aws_api_gateway_rest_api.sac_api_gateway_rest_api.id  
-  stage_name            = "sac-testing-apigw-stage"   
+resource "aws_kms_key" "kms_key_sac" {
+  description              = "KMS key template"
+  deletion_window_in_days  = 10
+  customer_master_key_spec = "SYMMETRIC_DEFAULT"
+  key_usage                = "GENERATE_VERIFY_MAC"
+  enable_key_rotation      = false
+  is_enabled               = false
 
-  depends_on = [
-    aws_api_gateway_account.sac_api_gateway_account
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Describe the policy statement",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "*",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "kms:KeySpec": "SYMMETRIC_DEFAULT"
+        }
+      }
+    }
   ]
 }
+EOF
+}
 
-resource "aws_cloudwatch_log_group" "sac_api_gateway_cloudwatch_log_group" {
-  name = "sac-testing-apigw-cloudwatch-log-group"
 
-  tags = {
-    Environment = "production"
-  }
+resource "aws_kms_alias" "kms_alias_sac" {
+  name          = "kms-alias-sac"
+  target_key_id = aws_kms_key.kms_key_sac.key_id
+  
 }
