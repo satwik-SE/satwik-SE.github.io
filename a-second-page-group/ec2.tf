@@ -11,7 +11,7 @@ resource "aws_instance" "aws_ec2_instance_sac_default" {
   ebs_block_device {
     delete_on_termination = false
     device_name = "/dev/sdf"  
-    encrypted = false
+    encrypted = true
     volume_size = 5
 
     tags = {
@@ -70,5 +70,6 @@ resource "aws_security_group" "ec2_instance_security_group_default" {
     to_port         = 0
     protocol        = "-1"
     cidr_blocks     = ["0.0.0.0/0"]
+  # oak9: Explicitly define destination IP addresses for egress rules
   }
 }
